@@ -41,23 +41,23 @@ class ItemsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return ArrayArticles.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ItemsTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ItemsTableViewCell
         
         // Configure the cell...
         
         
-        let content = ArrayArticles[indexPath.row]
+        let content = ArrayArticles[(indexPath as NSIndexPath).row]
         cell.TitleLabel.text = content.title
         cell.DescriptionLabel.text = content.description
         cell.PublishedAtLabel.text = content.publishedAt
@@ -73,24 +73,24 @@ class ItemsTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier(ContentItemVCShowSegueIdentifier as String, sender: tableView)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: ContentItemVCShowSegueIdentifier as String, sender: tableView)
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ContentItemVCShowSegueIdentifier {
-            if let vc = segue.destinationViewController as? ContentItemViewController, indexPath = self.tableView.indexPathForSelectedRow {
+            if let vc = segue.destination as? ContentItemViewController, let indexPath = self.tableView.indexPathForSelectedRow {
                 
-                let content = ArrayArticles[indexPath.row]
+                let content = ArrayArticles[(indexPath as NSIndexPath).row]
                 
                 vc.title = content.title
                 vc.urlString = content.url
@@ -105,9 +105,9 @@ class ItemsTableViewController: UITableViewController {
     func getLatestArticles() {
         
         
-        let request = NSURLRequest(URL: NSURL(string: NewsLoadURL)!)
-        let urlSession = NSURLSession.sharedSession()
-        let task = urlSession.dataTaskWithRequest(request, completionHandler:  { (data, response, error) -> Void in
+        let request = URLRequest(url: URL(string: NewsLoadURL)!)
+        let urlSession = URLSession.shared
+        let task = urlSession.dataTask(with: request, completionHandler:  { (data, response, error) -> Void in
             
             if let error = error {
                 print(error)
@@ -125,7 +125,7 @@ class ItemsTableViewController: UITableViewController {
               self.ArrayArticles = self.parseJsonData(data)
                 
                             
-                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                OperationQueue.main.addOperation({ () -> Void in
                     self.tableView.reloadData()
                 })
             }
@@ -134,9 +134,9 @@ class ItemsTableViewController: UITableViewController {
         task.resume()
     }
     
-    func parseJsonData(data: NSData) -> [Articles] {
+    func parseJsonData(_ data: Data) -> [Articles] {
         do {
-            let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+            let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
             
             //Parse JSON Data
             let jsonArticles = jsonResult?["articles"] as! [AnyObject]
