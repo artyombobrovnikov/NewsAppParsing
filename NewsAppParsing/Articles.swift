@@ -18,16 +18,16 @@ struct Articles {
     var url: String = ""
     var urlToImage: String = ""
     var publishedAt: String = ""
-    
 
     var image: UIImage?
     
         
     
     init () {
-    
-    if let imageURL = URL(string: urlToImage), let imageData = try? Data(contentsOf: imageURL) {
-        self.image = UIImage(data: imageData)
+        
+        
+        if let imageURL = NSURL(string: urlToImage), let imageData = NSData(contentsOf: imageURL as URL) {
+            self.image = UIImage(data: imageData as Data)
     }
 
  }

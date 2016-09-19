@@ -11,12 +11,16 @@ import UIKit
 
 
 let ContentItemVCShowSegueIdentifier = "ShowContentItem"
+typealias JSONArray = [AnyObject]
+typealias JSONDictionary = [String: AnyObject]
+
+
 
 class ItemsTableViewController: UITableViewController {
     
     
 
-    let NewsLoadURL = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=popular&apiKey=017075ac513641ad938be721cee69173"
+    let NewsLoadURL = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=017075ac513641ad938be721cee69173"
     
     
     var ArrayArticles = [Articles]()
@@ -115,14 +119,12 @@ class ItemsTableViewController: UITableViewController {
             }
             
             
-            
-           
-            //Parsing
+       //Parsing
             
         
             if let data = data {
 
-              self.ArrayArticles = self.parseJsonData(data)
+              self.ArrayArticles = self.parseJsonData(data: data)
                 
                             
                 OperationQueue.main.addOperation({ () -> Void in
@@ -133,8 +135,9 @@ class ItemsTableViewController: UITableViewController {
         })
         task.resume()
     }
+ 
     
-    func parseJsonData(_ data: Data) -> [Articles] {
+    func parseJsonData( data: Data) -> [Articles] {
         do {
             let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
             
@@ -149,8 +152,9 @@ class ItemsTableViewController: UITableViewController {
                  article.urlToImage = jsonArticle["urlToImage"] as! String
                  article.publishedAt = jsonArticle["publishedAt"] as! String
                 
-                                
-                ArrayArticles.append(article)
+                
+                
+                                ArrayArticles.append(article)
                 
                 
             
@@ -165,7 +169,4 @@ class ItemsTableViewController: UITableViewController {
     
     
 }
-
     
-    
-
