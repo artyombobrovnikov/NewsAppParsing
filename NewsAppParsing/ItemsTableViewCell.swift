@@ -14,7 +14,7 @@ class ItemsTableViewCell: UITableViewCell {
     @IBOutlet weak var TitleLabel: UILabel!
     @IBOutlet weak var DescriptionLabel: UILabel!
     @IBOutlet weak var PublishedAtLabel: UILabel!
-    @IBOutlet weak var UrlToImageLabel: UIImageView!
+    @IBOutlet weak var ImageLabel: UIImageView!
     
     
     
@@ -22,16 +22,16 @@ class ItemsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func updateWithImage(_ row: Int) {
         
-        // Configure the view for the selected state
+        let image = UIImage(named: "\(row)")
         
-        
-        
-            
-        
-    }
-    
+        self.ImageLabel.image = image
+
+       
 }
+}
+
+

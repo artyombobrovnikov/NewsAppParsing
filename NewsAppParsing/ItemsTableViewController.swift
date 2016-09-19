@@ -20,7 +20,7 @@ class ItemsTableViewController: UITableViewController {
     
     
 
-    let NewsLoadURL = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=017075ac513641ad938be721cee69173"
+    let NewsLoadURL = "https://newsapi.org/v1/articles?source=national-geographic&sortBy=top&apiKey=017075ac513641ad938be721cee69173"
     
     
     var ArrayArticles = [Articles]()
@@ -61,11 +61,11 @@ class ItemsTableViewController: UITableViewController {
         // Configure the cell...
         
         
-        let content = ArrayArticles[(indexPath as NSIndexPath).row]
-        cell.TitleLabel.text = content.title
-        cell.DescriptionLabel.text = content.description
-        cell.PublishedAtLabel.text = content.publishedAt
-        cell.UrlToImageLabel.image = content.image
+       
+        cell.TitleLabel.text = ArrayArticles[indexPath.row].title
+        cell.DescriptionLabel.text = ArrayArticles[indexPath.row].description
+        cell.PublishedAtLabel.text = ArrayArticles[indexPath.row].publishedAt
+        cell.updateWithImage((indexPath as NSIndexPath).row)
 
         
         
@@ -126,7 +126,8 @@ class ItemsTableViewController: UITableViewController {
 
               self.ArrayArticles = self.parseJsonData(data: data)
                 
-                            
+                
+                                            
                 OperationQueue.main.addOperation({ () -> Void in
                     self.tableView.reloadData()
                 })
@@ -149,12 +150,11 @@ class ItemsTableViewController: UITableViewController {
                 article.title = jsonArticle["title"] as! String
                 article.description = jsonArticle["description"] as! String
                  article.url = jsonArticle["url"] as! String
-                 article.urlToImage = jsonArticle["urlToImage"] as! String
+              //   article.urlToImage = jsonArticle["urlToImage"] as! String
                  article.publishedAt = jsonArticle["publishedAt"] as! String
                 
                 
-                
-                                ArrayArticles.append(article)
+                ArrayArticles.append(article)
                 
                 
             

@@ -10,6 +10,7 @@
         <!--Top Headlines-->
         <scene sceneID="PGf-CY-n1N">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AoD-Vv-PnA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="VjO-Vv-WdM" customClass="ItemsTableViewController" customModule="NewsAppParsing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" sectionHeaderHeight="28" sectionFooterHeight="28" id="lWJ-47-R73">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -20,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfT-P9-7cJ" id="UxF-eq-AoK">
-                                    <frame key="frameInset" width="342" height="104"/>
+                                    <frame key="frameInset" width="342" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvA-Bq-4xS">
@@ -69,9 +70,9 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="DescriptionLabel" destination="dEy-ne-g8f" id="jOa-lE-ow4"/>
+                                    <outlet property="ImageLabel" destination="6GK-9S-TWs" id="6Ro-yT-ujo"/>
                                     <outlet property="PublishedAtLabel" destination="IGM-eT-bf7" id="6HN-ud-54J"/>
                                     <outlet property="TitleLabel" destination="pvA-Bq-4xS" id="CPm-zM-shg"/>
-                                    <outlet property="UrlToImageLabel" destination="6GK-9S-TWs" id="ftL-UF-GMY"/>
                                     <segue destination="EwP-up-Upy" kind="show" identifier="ShowContentItem" id="SYL-1z-77T"/>
                                 </connections>
                             </tableViewCell>
@@ -80,9 +81,8 @@
                     <navigationItem key="navigationItem" title="Top Headlines" id="s0G-Hv-gM0"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AoD-Vv-PnA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1431" y="-976"/>
+            <point key="canvasLocation" x="1444" y="-1093"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jYf-2t-hiO">
@@ -95,12 +95,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="VjO-Vv-WdM" kind="relationship" relationship="rootViewController" id="LOU-Gb-G4h"/>
+                        <segue destination="VjO-Vv-WdM" kind="relationship" relationship="rootViewController" id="f43-pe-Mn2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SN0-3R-kbt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747" y="-950"/>
+            <point key="canvasLocation" x="585" y="-1093"/>
         </scene>
         <!--Content Item View Controller-->
         <scene sceneID="4BA-Ss-xri">
@@ -133,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiY-lE-rwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2228" y="-976"/>
+            <point key="canvasLocation" x="2255" y="-1093"/>
         </scene>
     </scenes>
 </document>

@@ -25,9 +25,13 @@ struct Articles {
     
     init () {
         
-        
-        if let imageURL = NSURL(string: urlToImage), let imageData = NSData(contentsOf: imageURL as URL) {
-            self.image = UIImage(data: imageData as Data)
+                if let imageURL = NSURL(string: "urlToImage"), let data = NSData(contentsOf: imageURL as URL) {
+            self.image = UIImage(data: data as Data)
+       
+            print(imageURL)
+            
+            
+            
     }
 
  }
