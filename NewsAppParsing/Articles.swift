@@ -9,34 +9,24 @@
 import Foundation
 import UIKit
 
-struct Articles {
+class Articles {
     
-    
-    var author: String = ""
+   var author: String = ""
     var title: String = ""
     var description: String = ""
     var url: String = ""
     var urlToImage: String = ""
     var publishedAt: String = ""
-
     var image: UIImage?
     
-        
     
     init () {
-        
-                if let imageURL = NSURL(string: "urlToImage"), let data = NSData(contentsOf: imageURL as URL) {
-            self.image = UIImage(data: data as Data)
-       
-            print(imageURL)
-            
-            
-            
+          //if let imageURL = NSURL(string: "urlToImage"), let data = NSData(contentsOf: imageURL as URL) {
+         //self.image = UIImage(data: data as Data)
     }
-
  }
 
 
-}
+
  
 

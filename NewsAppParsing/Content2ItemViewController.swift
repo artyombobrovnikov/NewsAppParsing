@@ -1,27 +1,27 @@
 //
-//  ContentItemViewController.swift
+//  Content2TableViewController.swift
 //  NewsAppParsing
 //
-//  Created by Admin on 15.09.16.
+//  Created by Admin on 03.10.16.
 //  Copyright © 2016 Bobrovnikov. All rights reserved.
 //
 
 import UIKit
 
-class ContentItemViewController: UIViewController {
+class Content2ItemViewController: UIViewController {
     
-    // MARK: - Outlets
+// MARK: - Outlets
     @IBOutlet weak var webView: UIWebView!
     
-    // MARK: - Properties
+// MARK: - Properties
     var urlString: String?
     
-    // MARK: - Initializers
+// MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    // MARK: - View life cycle
+   
+// MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
